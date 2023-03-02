@@ -1,0 +1,272 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: url(assets/img/surf.jpg) center no-repeat;
+    background-color: #313E72;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+img{
+    max-width: 100%;
+}
+
+main{
+    margin: 30px auto;
+    max-width: 1300px !important;
+}
+
+h1 {
+    margin: 0;
+}
+
+.card{
+    border: none !important;
+    background-color: #F7EBE5;
+}
+
+.card{
+    transition: .2s ease-in-out all;
+    padding: 0 !important;
+}
+
+.card:hover{
+    transform: scale(1.02);
+}
+
+#nav {
+    height: 95px;
+}
+
+#nav a:nth-child(1) img {
+    width: 50px;
+}
+#nav a:nth-child(2) img {
+    width: 25px;
+}
+
+.nav-link {
+    padding-left: 0;
+}
+
+#nav a {
+    margin: 0;
+    padding: 0;
+}
+
+#logoCarrito{
+    position: relative;
+}
+
+#logoCarrito img {
+    width: 25px;
+    display: flex;
+}
+
+#exampleModal h1 {
+    color: #313E72 !important;
+}
+
+#carritoItem, .carritoItem {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1fr;
+    align-items: center;
+}
+
+.carritoItem:first-of-type {
+    padding-bottom: var(--bs-modal-padding);
+}
+
+.bg-carrito{
+    background-color: #313E72;
+    top: 0;
+    left: 100%;
+}
+
+.img-prod{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.img-prod img{
+    border-radius: 100%;
+    max-width: 50px;
+}
+
+.modalEliminarProd {
+    display: none;
+}
+
+#sumar, #restar, #trash {
+    cursor: pointer;
+    transition: .2s ease-in-out all;
+}
+
+.navbar-brand {
+    transition: .2s ease-in-out all;
+}
+
+.navbar-brand:last-child:hover {
+    transform: scale(1.2);
+}
+
+.productBtns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toast {
+    position: fixed;
+    z-index: 234;
+    bottom: 0;
+    right: 0;
+}
+
+.toast img {
+    width: 30px;
+}
+
+.modal-view {
+    max-width: 100%;
+    width: 500px;
+    margin: auto 0 auto auto;
+    transform: translateX(100%) !important;
+}
+
+@media screen and (max-width: 500px) {
+    .modal-view{
+        width: 100%;
+    }
+    .datos{
+        display: none;
+    }
+    .img-prod{
+        flex-direction: column;
+    }
+    .productBtns{
+        flex-direction: column;
+    }
+}
+
+.modal-view-content {
+    height: 100vh;
+    background-color: whitesmoke;
+}
+
+.modal.show .modal-dialog {
+    transform: none !important;
+}
+
+.filtros {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 1300px;
+}
+
+.precio {
+    color: gray;
+}
+
+h1, .h5, h2, .filtros a {
+    color: white !important;
+}
+
+h3, p, a, div {
+    color: #313E72 !important; 
+}
+
+#btnAgregar {
+    background-color: #313E72;
+    border-color: #313E72;
+}
+
+header {
+    margin-top: 100px;
+    padding-bottom: 50px;
+    max-width: 1300px !important;
+}
+
+#modalFiltros {
+    padding: 0;
+}
+
+#modalFiltros img {
+    object-fit: cover;
+    max-height: 400px !important;
+}
+
+#exampleModal3 .modal-header {
+    border: 0;
+}
+
+#exampleModal3 .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: auto;
+}
+
+.modal-content .card:hover {
+    transform: none;
+}
+
+.toast {
+    transition: all ease-in-out .5s;
+}
+
+.btnModalFiltros {
+    position: absolute;
+    z-index: 23;
+    right: 10px;
+    top: 10px;
+}
+
+.precio-total {
+    padding: var(--bs-modal-padding);
+    font-size: 18px;
+    color: #313E72;
+    border-top: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
+}
+
+.precio-total span {
+    padding-left: 10px;
+}
+
+.divModalFiltros{
+    width: 100%;
+    height: 100vh;
+    display: block;
+    position: absolute;
+    max-width: 100%;
+    background: black;
+    top: 0;
+    z-index: 1031;
+    opacity: .5;
+}
+
+.modal-mensaje{
+    max-width: 40%;
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: 1234;
+    width: max-content;
+    background: white;
+    padding: .5rem;
+    margin: .5rem;
+    border-radius: 5px;
+}
+
