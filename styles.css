@@ -106,6 +106,7 @@ h1 {
 
 .modalEliminarProd {
     display: none;
+    z-index: 1300;
 }
 
 #sumar, #restar, #trash {
