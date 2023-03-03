@@ -1,7 +1,7 @@
 # Programacion I - FINAL
 
 ## URL
-- [Sitio subido a github pages](https://github.com/lclob/p1-final-dwn2c).
+- [Sitio subido a github pages](https://lclob.github.io/p1-final-dwn2c/).
 
 ## Alumno/s
 
