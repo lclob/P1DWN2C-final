@@ -15,6 +15,8 @@ function abrirCarrito() {
   let icono = document.querySelector("#logoCarrito");
   icono.addEventListener("click", function () {
     crearCarrito();
+    mostrarCarrito();
+    
     let modal = document.querySelector(".principal");
     if (modal.style) {
       document.body.style = "overflow: hidden; padding-right: 17px;";
@@ -33,99 +35,110 @@ function abrirCarrito() {
         document.body.style = "";
         document.body.classList.remove("modal-open");
         document.querySelector("nav").style = "";
-        location.reload();
       });
     });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        modal.classList.remove("show");
+        modal.style.display = "none";
+        document.body.style = "";
+        document.body.classList.remove("modal-open");
+        document.querySelector("nav").style = "";
+      }
+    });
+
   });
 }
 
 // Creo carrito DOM
 function crearCarrito() {
   let modalCheck = document.querySelector(".principal");
-  if (!modalCheck) {
-    let modal = document.createElement("div");
-    modal.classList.add("modal", "fade", "principal");
-    modal.id = "exampleModal";
-
-    let modalDialog = document.createElement("div");
-    modalDialog.classList.add("modal-view", "modal-dialog");
-
-    let modalContent = document.createElement("div");
-    modalContent.classList.add("modal-view-content", "modal-content");
-
-    let modalHeader = document.createElement("div");
-    modalHeader.classList.add("modal-header");
-
-    let modalTitle = document.createElement("h1");
-    modalTitle.classList.add("modal-title", "fs-5");
-    modalTitle.id = "exampleModalLabel";
-    modalTitle.innerText = "Tu Carrito";
-
-    let btnHeader = document.createElement("button");
-    btnHeader.classList.add("btn-close");
-
-    let modalBody = document.createElement("div");
-    modalBody.classList.add("modal-body", "overflow-auto", "body-unique");
-
-    let carritoDetalles = document.createElement("div");
-    carritoDetalles.classList.add(
-      "carritoItem",
-      "fw-semibold",
-      "border-bottom"
-    );
-    carritoDetalles.id = "carritoDetalles";
-
-    let textProductos = document.createElement("div");
-    textProductos.classList.add("text-center");
-    textProductos.innerText = "Productos";
-
-    let textCantidad = document.createElement("div");
-    textCantidad.classList.add("text-center");
-    textCantidad.innerText = "Cantidad";
-
-    let textPrecio = document.createElement("div");
-    textPrecio.classList.add("text-center");
-    textPrecio.innerText = "Precio";
-
-    let carritoBody = document.createElement("div");
-    carritoBody.classList.add("carrito-body");
-
-    let precioTotal = document.createElement("div");
-    precioTotal.classList.add("precio-total", "fw-semibold");
-
-    let modalFooter = document.createElement("div");
-    modalFooter.classList.add("modal-footer");
-
-    let buttonVaciar = document.createElement("button");
-    let buttonContinuar = document.createElement("button");
-    let buttonPagar = document.createElement("button");
-
-    buttonVaciar.classList.add("btn", "btn-danger");
-    buttonContinuar.classList.add("btn", "btn-secondary");
-    buttonPagar.classList.add("btn", "btn-primary", "btn-pago");
-
-    buttonVaciar.id = "reset";
-
-    buttonVaciar.innerText = "Vaciar carrito";
-    buttonContinuar.innerText = "Continuar comprando";
-    buttonPagar.innerText = "Continuar";
-
-    buttonContinuar.setAttribute("data-bs-dismiss", "modal");
-    buttonVaciar.setAttribute("data-bs-vaciar", "vaciar");
-
-    document.body.appendChild(modal);
-    modal.appendChild(modalDialog);
-    modalDialog.appendChild(modalContent);
-    modalContent.append(modalHeader, modalBody, precioTotal, modalFooter);
-
-    modalHeader.append(modalTitle, btnHeader);
-
-    modalBody.append(carritoDetalles, carritoBody);
-
-    carritoDetalles.append(textProductos, textCantidad, textPrecio);
-
-    modalFooter.append(buttonVaciar, buttonContinuar, buttonPagar);
+  if (modalCheck) {
+    modalCheck.remove();
   }
+  let modal = document.createElement("div");
+  modal.classList.add("modal", "fade", "principal");
+  modal.id = "exampleModal";
+
+  let modalDialog = document.createElement("div");
+  modalDialog.classList.add("modal-view", "modal-dialog");
+
+  let modalContent = document.createElement("div");
+  modalContent.classList.add("modal-view-content", "modal-content");
+
+  let modalHeader = document.createElement("div");
+  modalHeader.classList.add("modal-header");
+
+  let modalTitle = document.createElement("h1");
+  modalTitle.classList.add("modal-title", "fs-5");
+  modalTitle.id = "exampleModalLabel";
+  modalTitle.innerText = "Tu Carrito";
+
+  let btnHeader = document.createElement("button");
+  btnHeader.classList.add("btn-close");
+
+  let modalBody = document.createElement("div");
+  modalBody.classList.add("modal-body", "overflow-auto", "body-unique");
+
+  let carritoDetalles = document.createElement("div");
+  carritoDetalles.classList.add(
+    "carritoItem",
+    "fw-semibold",
+    "border-bottom"
+  );
+  carritoDetalles.id = "carritoDetalles";
+
+  let textProductos = document.createElement("div");
+  textProductos.classList.add("text-center");
+  textProductos.innerText = "Productos";
+
+  let textCantidad = document.createElement("div");
+  textCantidad.classList.add("text-center");
+  textCantidad.innerText = "Cantidad";
+
+  let textPrecio = document.createElement("div");
+  textPrecio.classList.add("text-center");
+  textPrecio.innerText = "Precio";
+
+  let carritoBody = document.createElement("div");
+  carritoBody.classList.add("carrito-body");
+
+  let precioTotal = document.createElement("div");
+  precioTotal.classList.add("precio-total", "fw-semibold");
+
+  let modalFooter = document.createElement("div");
+  modalFooter.classList.add("modal-footer");
+
+  let buttonVaciar = document.createElement("button");
+  let buttonContinuar = document.createElement("button");
+  let buttonPagar = document.createElement("button");
+
+  buttonVaciar.classList.add("btn", "btn-danger");
+  buttonContinuar.classList.add("btn", "btn-secondary");
+  buttonPagar.classList.add("btn", "btn-primary", "btn-pago");
+
+  buttonVaciar.id = "reset";
+
+  buttonVaciar.innerText = "Vaciar carrito";
+  buttonContinuar.innerText = "Continuar comprando";
+  buttonPagar.innerText = "Continuar";
+
+  buttonContinuar.setAttribute("data-bs-dismiss", "modal");
+  buttonVaciar.setAttribute("data-bs-vaciar", "vaciar");
+
+  document.body.appendChild(modal);
+  modal.appendChild(modalDialog);
+  modalDialog.appendChild(modalContent);
+  modalContent.append(modalHeader, modalBody, precioTotal, modalFooter);
+
+  modalHeader.append(modalTitle, btnHeader);
+
+  modalBody.append(carritoDetalles, carritoBody);
+
+  carritoDetalles.append(textProductos, textCantidad, textPrecio);
+
+  modalFooter.append(buttonVaciar, buttonContinuar, buttonPagar);
 }
 
 // agregar al carrito
@@ -187,10 +200,14 @@ function mostrarCarrito() {
   let total = document.querySelector(".precio-total");
 
   let btnDisabled = document.querySelector(".btn-pago");
+  let btnVaciar = document.querySelectorAll(".btn-danger")[1];
+
   if (!carrito || carrito.length == 0) {
     btnDisabled.disabled = true;
+    btnVaciar.disabled = true;
   } else {
     btnDisabled.disabled = false;
+    btnVaciar.disabled = false;
   }
 
   if (carrito && carrito.length > 0) {
@@ -211,9 +228,8 @@ function mostrarCarrito() {
       itemCarrito.setAttribute("id", "carritoItem");
       itemCarrito.classList.add("border-bottom", "py-3");
       itemCarrito.innerHTML = `
-        <div class="img-prod"><img src="${item.img}" /><span>${
-        item.nombre
-      }</span></div>
+        <div class="img-prod"><img src="${item.img}" /><span>${item.nombre
+        }</span></div>
         <div class="text-center"><span>${item.cantidad}</span></div>
         <div class="text-center"><span>${Intl.NumberFormat("de-DE", {
           maximumSignificantDigits: 3,
@@ -221,11 +237,9 @@ function mostrarCarrito() {
           currency: "USD",
         }).format(item.precio)}</span></div>
         <div class="productBtns text-center">
-        <i id="restar" class="fs-3 bi bi-dash" data-id="${
-          item.id
+        <i id="restar" class="fs-3 bi bi-dash" data-id="${item.id
         }" data-val="${val}"></i>
-        <i id="sumar" class="fs-3 bi bi-plus" data-id="${
-          item.id
+        <i id="sumar" class="fs-3 bi bi-plus" data-id="${item.id
         }" data-val="${val}"></i>
         <i id="trash" class="bi bi-trash" data-id="${item.id}"></i>
         </div>`;
@@ -256,6 +270,7 @@ function mostrarCarrito() {
   }
 
   continuar();
+  vaciarCarrito();
 }
 
 // boton vaciar carrito
@@ -418,9 +433,8 @@ function filtros() {
 
       var index = 11000;
       var intervalo = setInterval(() => {
-        mensaje.innerText = `OFERTA EXCLUSIVA: Tienes ${
-          index / 1000 - 1
-        } segundos para adquirirla!`;
+        mensaje.innerText = `OFERTA EXCLUSIVA: Tienes ${index / 1000 - 1
+          } segundos para adquirirla!`;
         index -= 1000;
         if (index == 0) {
           modalFiltros.classList.remove("show");
@@ -456,6 +470,9 @@ function continuar() {
     btn.style.display = "none";
     let modalBody = document.querySelectorAll(".modal-body")[2];
     modalBody.innerHTML = "";
+
+    let btnVaciar = document.querySelectorAll(".btn-danger")[1];
+    btnVaciar.style.display = "none";
 
     if (!tarjeta) {
       let form = document.createElement("form");
@@ -570,6 +587,7 @@ function pagar() {
 
     function showToast() {
       toast.style.opacity = "0";
+      toastBody.textContent = "El producto se ha agregado a su carrito!";
     }
 
     setTimeout(showToast, 10000);
@@ -588,20 +606,20 @@ function checkerInput() {
   });
 
   // Número de tarjeta
-  document.querySelector(".inputTarjeta").addEventListener('input', (e)=>{
-    if(e.target.value.length !== 16){
-        e.target.setCustomValidity("El numero de la tarjeta debe tener 16 números sin espacios.");
+  document.querySelector(".inputTarjeta").addEventListener('input', (e) => {
+    if (e.target.value.length !== 16) {
+      e.target.setCustomValidity("El numero de la tarjeta debe tener 16 números sin espacios.");
     } else {
-        e.target.setCustomValidity("");
+      e.target.setCustomValidity("");
     }
   });
 
   // CCV
-  document.querySelector(".inputCCV").addEventListener('input', (e)=>{
-    if(e.target.value.length !== 3){
-        e.target.setCustomValidity("El CCV debe estar compuesto de tres números, Ejemplo: 109.");
+  document.querySelector(".inputCCV").addEventListener('input', (e) => {
+    if (e.target.value.length !== 3) {
+      e.target.setCustomValidity("El CCV debe estar compuesto de tres números, Ejemplo: 109.");
     } else {
-        e.target.setCustomValidity("");
+      e.target.setCustomValidity("");
     }
   });
 };
